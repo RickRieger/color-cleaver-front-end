@@ -13,7 +13,7 @@ function colorCombinator(color1, color2) {
   }
  
  
- 
+
 }
 
 // Our setup code here. Don't touch!
