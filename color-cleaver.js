@@ -6,17 +6,11 @@ const getInput = require("./get-input.js");
 
 // Your code here!
 
-// below code was changed in order to anticipate capital letters
-
-var str = getInput(1);
-var str2 = getInput(2);
-
-if (str !== undefined){
-    var color1 = str.toLowerCase();
-}
-if (str2 !== undefined){
-    var color2 = str2.toLowerCase();
-}
+// Read up to two colors and lowercase them, so "Red" and "RED" work too.
+// A color that wasn't typed stays undefined.
+const lowercase = (text) => (text === undefined ? undefined : text.toLowerCase());
+const color1 = lowercase(getInput(1));
+const color2 = lowercase(getInput(2));
 
 // my code based on flowchart-2
 
