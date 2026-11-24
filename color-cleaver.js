@@ -6,101 +6,33 @@ const getInput = require("./get-input.js");
 
 // Your code here!
 
+// Read up to two colors and lowercase them, so "Red" and "RED" work too.
+// A color that wasn't typed stays undefined.
+const lowercase = (text) => (text === undefined ? undefined : text.toLowerCase());
+const color1 = lowercase(getInput(1));
+const color2 = lowercase(getInput(2));
 
-// let color1 = getInput(1);
-// let color2 = getInput(2);
+const capitalize = (word) => word[0].toUpperCase() + word.slice(1);
 
-
-// below code was changed in order to anticipate capital letters
-
-var str = getInput(1);
-var str2 = getInput(2);
-
-if (str !== undefined){
-    var color1 = str.toLowerCase();
+// Based on flowchart 2: no colors / one color / two colors
+if (color1 === undefined) {
+  console.log("Please type a color after the file name: one secondary color to split it (node color-cleaver.js orange), or two primary colors to mix them (node color-cleaver.js red yellow).");
+} else if (color2 === undefined) {
+  // One color: split a secondary color into its two primaries
+  if (isValidSecondary(color1)) {
+    console.log(`${capitalize(color1)} is made by mixing ${colorDeconstructor(color1)}.`);
+  } else if (isValidPrimary(color1)) {
+    console.log(`${capitalize(color1)} is a primary color, so it can't be split. Try orange, purple or green, or add a second primary color to mix.`);
+  } else {
+    console.log(`"${color1}" isn't a secondary color. Try orange, purple or green.`);
+  }
+} else {
+  // Two colors: mix two different primary colors
+  if (!isValidPrimary(color1) || !isValidPrimary(color2)) {
+    console.log("To mix colors, type two primary colors: red, yellow or blue.");
+  } else if (color1 === color2) {
+    console.log(`Mixing ${color1} with ${color1} just makes ${color1}. Try two different primary colors.`);
+  } else {
+    console.log(`${capitalize(color1)} and ${color2} make ${colorCombinator(color1, color2)}.`);
+  }
 }
-if (str2 !== undefined){
-    var color2 = str2.toLowerCase();
-}
-
-
-
-
-
-// My code based on flowchart-1
-
-// if (color1 === undefined && color2 === undefined){
-//     console.log ('Please provide at least one color to be evaluated!');
-// }
-
-// else if(isValidSecondary(color1)=== true && color2 === undefined ){
-
-//     console.log (colorDeconstructor(color1));
-// }
-
-// else if(color1 === color2 && isValidPrimary(color1) && isValidPrimary(color2)){
-//     console.log("Can not use the same color twice!")
-// }
-
-
-// else if(isValidPrimary(color1) === true && isValidPrimary(color2) === true){
-//     console.log(colorCombinator(color1,color2));
-// }
-
-// else { console.log('Please provide 2 primary colors to be evaluated!');
-
-// }
-// else if(isValidSecondary(color1) === false && isValidPrimary(color1) === false){
-
-//     console.log ("Please provide valid colors to be evaluated.");
-// }
-
-
-
-
-
-// my code based on flowchart-2
-
-if(isValidPrimary(color1) === true && isValidPrimary(color2) === true && color1 !== color2){
-    console.log(colorCombinator(color1,color2));
-}
-else if(isValidSecondary(color1) === true && color2 === undefined){
-    console.log (colorDeconstructor(color1));
-}
-
-else {
-    console.log ('Please pass a single secondary color or two different primary colors!');
-}
-
-
-
-
-
-// // (Andy's code)
-
-
-// if (color1 === undefined && color2 === undefined) {
-//     console.log('Please enter at least one color');
-
-// } else if (color2 === undefined) {
-
-//     let oneColor = colorDeconstructor(color1)
-//     if (isValidSecondary(color1)) {
-//         console.log(`Your color is a combo of ${oneColor}`)
-//     } else {
-//         console.log('please choose orange, purple or green')
-//     }
-
-// } else { 
-
-//     if (!isValidPrimary(color1) || !isValidPrimary(color2)) {   
-//         console.log('Please enter two primary colors.  Primary colors consist of; red, blue or yellow')
-//     } else {
-//         const twoColors = colorCombinator(color1, color2)
-//         console.log(`your colors combined will give you ${twoColors}`)
-//     }
-
-// }
-
-
-
